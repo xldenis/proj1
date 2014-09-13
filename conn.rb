@@ -18,7 +18,7 @@ class ConnectToReddit < Sinatra::Base
     # SecureRandom, which is included in Ruby, helps create a url-safe random string.
     state = SecureRandom.urlsafe_base64
     session[:state] = state
-    redirect settings.client.auth_url(["identity"], :permanent, state)
+    redirect settings.client.auth_url(["identity","mysubreddits","read","history"], :permanent, state)
   end
 
   get "/auth/reddit/redirect" do
