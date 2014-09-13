@@ -1,0 +1,2 @@
+require "./conn"
+run ConnectToReddit
