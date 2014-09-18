@@ -1,4 +1,4 @@
-import praw, json
+import praw, json, sys
 
 # Tells the json encoder how to serialize comments and submission.
 def serial(obj):
@@ -16,7 +16,7 @@ r = praw.Reddit('COMP-598 ML BOT'
 r.login('en4bz')
 # Get all top post from this week. Currently the first page (25 posts)
 # Need to set 'limit=x' to get x posts.
-posts = r.get_subreddit('funny').get_top_from_week()
+posts = r.get_subreddit(sys.argv[1]).get_top_from_year(limit=100)
 for post in posts:
     print 'pulling comments from', post
     # Expand all 'more comments'. This is the same as going through all the 
