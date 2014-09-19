@@ -33,4 +33,4 @@ for post in posts:
         json.dump(post_info, f, default=serial)
         f.close()
 
-    sys.stdout.flus() # flush stdout so logs get written
+    sys.stdout.flush() # flush stdout so logs get written
