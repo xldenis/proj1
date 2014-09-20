@@ -1,5 +1,6 @@
 require 'json'
 require 'fast_stemmer'
+require 'csv'
 
 Encoding.default_external = "utf-8"
 def markdown_strip(md)
@@ -33,9 +34,14 @@ filtered = comments.map do |com|
       tokens: tokenize(body_string),
     }
   end
-end
+end.flatten
 
-
-name = File.basename(ARGV[0],'.json') + "_filtered.json"
 puts filtered.to_json
-File.open(name,'w:UTF-8') {|f| f.write(filtered.to_json)}
+name = File.basename(ARGV[0],'.json') + "_filtered.csv"
+
+CSV.open(name, 'w') do |csv|
+  filtered.each do |ft|
+    csv <<[ft[:author], ft[:body], ft[:subreddit], ft[:score], ft[:tokens].join(" ")]
+  end
+end
+# File.open(name,'w:UTF-8') {|f| f.write(filtered.to_json)}
