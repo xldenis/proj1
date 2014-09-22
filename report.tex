@@ -1,7 +1,6 @@
 \documentclass[11pt,twocolumn]{article}
 \usepackage{amsthm, amssymb, geometry, mathrsfs}
 \usepackage[T1]{fontenc}
-\usepackage[all]{xy}
 
 \title {COMP 598: Something Something Reddit}
 
@@ -10,17 +9,36 @@
 \begin {document}
 \maketitle
 
-\section {Abstract}
+\section{Abstract}
 
-\section {Motivation}
+\section{What is Reddit?}
+
+Reddit is a popular online link aggregation website. It allows user to post links to other webpages, images, videos, and more and to vote on the popularity of these submissions. Popular submissions are 'Upvoted' while unpopular ones are 'Downvoted'. Users are also allowed to comment on and discuss submissions. Comments, like submissions, are also subject to be voted on. Some of the key vocabulary of reddit is listed below.
+\\
+\\
+\textbf{post:} Also know as a submission is a link to another webpage. This webpage may be news article, a blog post, an image, a video, etc. All posts contain a comment section where user are allowed to discuss the submission.
+\\
+\textbf{self post:} Is a special type of post where a user writes their own text submission. This is often used to started discussions or ask questions in a given subreddit. 
+\\
+\textbf{subreddit:} A subsection of reddit dedicated to a certain topic. 
+\\
+\textbf{upvote/downvote:} The action of voting on the popularity of a post or comment.
+
+\section{Motivation}
 With the rise of social networks, many researchers have poured over the data produced to find explore the connections between friends, text, and social interactions. While much research has been done on networks such as Twitter and Facebook, Reddit has remained largely ignored. The different structure of Reddit allows for an opportunity to look at different questions and a different style of conversation. Because Reddit users can label comments and posts as good or bad by voting, we can attempt to predict the interests of reddit users. 
-\section {Related Work}
-Due to the lack of studies related to reddit. There are few related datasets or papers. 
 
-\section {Results}
 
-\section {Discussion}
+One advantage of using Reddit as a data source is that one, all content is publicly available, and two, it has an easy to use REST API. This allowed us to collection vast amount of JSON formated data. 
 
-\section {Appendix}
+\section{Related Work}
+Due to the lack of studies related to Reddit there are few related datasets or papers. A search through Google Scholar produces few results and the the top rated links are only listed because of share buttons on the paper's hosting page. Most of the related research we found was University projects like our own. We could not find any published papers or data.
 
-\end {document}
+That being said we did find an interesting analysis that aimed to predict the popularity of a self post based on its Flesch–Kincaid readability. This project found a correlation between how easy a self post was to read and how popular it would be. In particular posts with moderate readability where more popular than others with easy or hard readability.
+
+\section{Results}
+
+\section{Discussion}
+
+\section{Appendix}
+
+\end{document}
