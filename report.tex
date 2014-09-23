@@ -19,35 +19,31 @@ We collected a new machine learning dataset from the online social network Reddi
 \section{What is Reddit?}
 
 Reddit is a popular online link aggregation website. It allows user to post links to other webpages, images, videos, and more and to vote on the popularity of these submissions. Popular submissions are `Upvoted' while unpopular ones are `Downvoted'. Users are also allowed to comment on and discuss submissions. Comments, like submissions, are also subject to be voted on. Some of the key vocabulary of reddit is listed below.
-\\
-\\
-\textbf{post:} Also know as a submission is a link to another webpage. This webpage may be a news article, a blog post, an image, a video, etc. All posts contain a comment section where user are allowed to discuss the submission.
-\\
-\textbf{self post:} Is a special type of post where a user writes their own text submission. This is often used to started discussions or ask questions in a given subreddit. 
-\\
-\textbf{subreddit:} A subsection of reddit dedicated to a certain topic. 
-\\
-\textbf{upvote/downvote:} The action of voting on the popularity of a post or comment.
-\\
-\textbf{top level comment:} The root of a comment tree
+
+\begin {enumerate}
+\item \textbf{post:} Also know as a submission is a link to another webpage. This webpage may be a news article, a blog post, an image, a video, etc. All posts contain a comment section where user are allowed to discuss the submission.
+\item \textbf{self post:} Is a special type of post where a user writes their own text submission. This is often used to started discussions or ask questions in a given subreddit. 
+\item \textbf{subreddit:} A subsection of reddit dedicated to a certain topic. 
+\item \textbf{upvote & downvote:} The action of voting on the popularity of a comment in either a positive or negative manner.
+\item \textbf{top level comment:} The root of a comment tree.
+\end {enumerate}
+
 \section{Motivation}
 With the rise of social networks, many researchers have poured over the data produced to find explore the connections between friends, text, and social interactions. While much research has been done on networks such as Twitter and Facebook, Reddit has remained largely ignored. The different structure of Reddit allows for an opportunity to look at different questions and a different style of conversation. Because Reddit users can label comments and posts as good or bad by voting, we can attempt to predict the interests of reddit users. 
 
-One advantage of using Reddit as a data source is that one, all content is publicly available, and two, it has an easy to use REST API. This allowed us to collection vast amount of JSON formatted data. 
+One advantage of using Reddit as a data source is that one, all content is publicly available, and two, it has an easy to use REST API. 
 
 \begin{figure*}
-  	\includegraphics[scale=0.4,trim=300 0 300 0]{./sports_freq.png}
+    \centering
+  	\includegraphics[width=0.92\textwidth]{./sports_freq.png}
   	\caption{Word frequency of the Sports subreddit.}
   	\label{fig:RSUencountered}
 \end{figure*}
-
 
 \section{Related Work}
 Due to the lack of studies related to Reddit there are few related datasets or papers. A search through Google Scholar produces few results and the top links are only listed because of share buttons on the paper's hosting site. Most of the related research we found was University projects like our own. We could not find any published papers or data.
 
 That being said we did find an interesting analysis that aimed to predict the popularity of a self post based on its Flesch-Kincaid readability. This project found a correlation between how easy a self post was to read and how popular it would be. In particular posts with moderate readability where more popular than others with easy or hard readability.
-
-
 
 \section{Dataset Description}
 
@@ -70,7 +66,7 @@ Therefore, if there are no words from that class, the prior probability will be 
 		
 \section{Discussion}
 
-Overall our results were quite positive. On possible use of our classifier would be to recommend new subreddits to users based on their comment history. Each user's comments are publicly available on their profile so it would be very easy to classify each of the comments into a given subreddit. If a user's comments where consistently classified into a small subset of subreddits it is possble that they may be interested in that subreddit. 
+Overall our results were quite positive. On possible use of our classifier would be to recommend new subreddits to users based on their comment history. Each user's comments are publicly available on their profile so it would be very easy to classify each of the comments into a given subreddit. If a user's comments where consistently classified into a small subset of subreddits it is possble that they may be interested in that subreddit. On a larger scale, sometimes posts are added to the wrong subreddit, this classifier could detect that comments really belong in a different subreddit and automatically move the entire post to that subreddit where it could recieve the apropriate community interaction.
 
 We hereby state that all the work presented in the report is that of the authors.
 
