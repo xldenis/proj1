@@ -35,6 +35,12 @@ Due to the lack of studies related to Reddit there are few related datasets or p
 
 That being said we did find an interesting analysis that aimed to predict the popularity of a self post based on its Flesch–Kincaid readability. This project found a correlation between how easy a self post was to read and how popular it would be. In particular posts with moderate readability where more popular than others with easy or hard readability.
 
+\section{Dataset Description}
+
+Reddit's developer API allowed us to download all of the post and comments data into a structured JSON file. Each post is saved in a JSON file under its primary identifier. Each date file consists of 2 main parts, the meta data and the comments. The meta data contains information about the post, such as how many comments there are, the score of the post, a link to the content and the type of content (image, video, article, etc.). The comments section consists of a list the top level comments for that post. Each of the top level comments contains a list of of child comments (replies) which in turn may have their own children. This forms a recursive tree structure with the top level post as the root. 
+
+In order to train our naive Bayes classifier we had to flatten the comments and evaluate the word frequency in each post, this can be done using a simple tree traversal algorithm that can be found in the appendix. 
+
 \section{Results}
 
 \section{Discussion}
