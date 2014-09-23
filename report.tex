@@ -7,7 +7,7 @@
 \addbibresource{citations.bib}
 \usepackage{multicol}% http://ctan.org/pkg/multicols
 
-\title {COMP 598: Something Something Reddit}
+\title {COMP 598: Multi-Class Classification of Reddit comments.}
 \author {Xavier Denis, Ian Forbes, Liu Liu}
 
 \begin {document}
@@ -40,7 +40,7 @@ One advantage of using Reddit as a data source is that one, all content is publi
     \centering
   	\includegraphics[width=0.92\textwidth]{./sports_freq.png}
   	\caption{Word frequency of the Sports subreddit.}
-  	\label{fig:RSUencountered}
+  	\label{sports}
 \end{figure*}
 
 \section{Related Work}
@@ -55,15 +55,16 @@ Reddit's developer API allowed us to download all of the post and comment data i
 In order to train our naive Bayes classifier we had to flatten the comments and evaluate the word frequency in each post, this can be done using a simple tree traversal algorithm that can be found in the appendix. 
 
 \section{Methods}
-We used a Naive Bayes classifier with single words (unigrams) as the features. Our choice of this classifier with the given feature set stems from the fact that the feature space, all words, is extremely large so naive Bayes' linear complexity with respect to the number of features was highly desirable. Our choice of feature set stems for the simplicity of extracting the features. Splinting words on spaces and extracting punctuation is a very fast and easy task. Other possible features set that we considered but dit not adopted where bigrams and term frequency–inverse document frequency (tf-idf). On difficulty with bigrams is that increase the sparseness of our features. Also the nature of most reddit comments, short - with poor spelling, grammar, and punctuation, weighs against the usefulness of bi-grams when compared to uni-grams. TF-IDF, which compares the ratio between the frequency of a word in a document and its total frequency is the corpus, is another way to calculate the word frequency but penalizes word that are common among all documents in the corpus. Unfortunately we only learned of this method towards the deadline and did not have time to implement it.
+We used a Naive Bayes classifier with single words (unigrams) as the features. Our choice of this classifier with the given feature set stems from the fact that the feature space, all words, is extremely large so naive Bayes' linear complexity with respect to the number of features was highly desirable. Our choice of feature set stems for the simplicity of extracting the features. Splinting words on spaces and extracting punctuation is a very fast and easy task. Other possible features set that we considered but dit not adopted where bigrams and term frequency–inverse document frequency (tf-idf)\cite{salton1983introduction}. On difficulty with bigrams is that increase the sparseness of our features. Also the nature of most reddit comments, short - with poor spelling, grammar, and punctuation, weighs against the usefulness of bi-grams when compared to uni-grams. TF-IDF, which compares the ratio between the frequency of a word in a document and its total frequency is the corpus, is another way to calculate the word frequency but penalizes word that are common among all documents in the corpus. Unfortunately we only learned of this method towards the deadline and did not have time to implement it.
 
 Therefore, the combination of words will not likely to appear in the text data to generate models of P(x|y) and apply generative learning (e.g. LDA) to text data classification.
 Naive Bayes assume the $x$ are conditionally independent given $y$ and simplifies the problem.\autocite{jordan2002discriminative}
 
 \begin{figure}
-  	\includegraphics[scale=1.0]{./sysmag_bayes.png}
+    \centering  
+  	\includegraphics[width=0.5\textwidth]{./sysmag_bayes.png}
   	\caption{Graphical representation of dependance in the Naive Bayes model. $C$ is the class and $a_i$ are the features. Readers should note that $C$ is dependent of the features but there is no dependence between features. }
-  	\label{fig:RSUencountered}
+  	\label{bayesnet}
 \end{figure}
 
 Laplace smoothing was applied since some words are not observed in the training data. The maximum likelihood estimator was,
@@ -71,39 +72,33 @@ Laplace smoothing was applied since some words are not observed in the training 
 P(x_j|y=1) = \frac {\#[x_j=1 \land y=1]+1}{\#[y=1]+2}
 \]
 Therefore, if there are no words from that class, the prior probability will be $0.5$
-
 \section{Results}
+\begin{figure}
+    \centering
+  	\includegraphics[width=0.5\textwidth]{./binary_data.png}
+  	\caption{Multi-class classification performance as a function of the number of classes. Six subreddits were used in the order indicated in Figure 4. We used a single classifier to selected the class with highest log probability for the test data.}
+  	\label{multiclass}
+\end{figure}		
+\begin{figure}
+    \centering
+  	\includegraphics[width=0.5\textwidth]{./roc.png}
+  	\caption{xxxx}
+  	\label{roc}
+\end{figure}		
+		
+\begin{figure}
+    \centering
+  	\includegraphics[width=0.5\textwidth]{./varyWBaseline.png}
+  	\caption{Classifier accuracy vs chance.}
+  	\label{}
+\end{figure}	
 
 \begin{figure}
     \centering
-  	\includegraphics[scale=0.5]{./binary_data.png}
-  	\caption{Classifier accuracy vs chance.}
-  	\label{fig:RSUencountered}
-\end{figure}		
-	
-\begin{figure}
-    \centering
-  	\includegraphics[scale=0.5]{./roc.png}
-  	\caption{Classifier accuracy vs chance.}
-  	\label{fig:RSUencountered}
-\end{figure}		
-	
-		
-\begin{figure}
-    \centering
-  	\includegraphics[scale=0.4]{./varyWBaseline.png}
-  	\caption{Classifier accuracy vs chance.}
-  	\label{fig:RSUencountered}
+  	\includegraphics[width=0.5\textwidth]{./confusion_mat.png}
+  	\caption{Confusion matrix for the multi-class performance. The number of comments in each subreddits is 35000, 45000, 46000, 46000, 73000, and 94000, respectively.}
+  	\label{confusion}
 \end{figure}	
-	
-	
-\begin{figure}
-    \centering
-  	\includegraphics[scale=0.4]{./confusion_mat.png}
-  	\caption{Classifier accuracy vs chance.}
-  	\label{fig:RSUencountered}
-\end{figure}	
-		
 \section{Discussion}
 The final dataset and features are accurate when classifying but could still be improved. There were several issues during tokenization where standard approaches would fail due to reddit's internal culture. The frequent use of non-textual unicode characters to encode emojis and other information wouldn't be captured by pure word tokenization. Additionally, the presence of Markdown for text formatting adds another level of complexity to the word extraction. We settled on stripping markdown formatting through regexes before splitting on spaces and stemming words. However, there a few issues with things such as `l33tspeak' where numbers are subsistuted for letters, causing use to not recognize identical words. 
 
