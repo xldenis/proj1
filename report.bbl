@@ -1,0 +1,76 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist{entry}{none}
+    \entry{reddit}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=875f7267b367080a130feabbf1aa5955}{Inc.}{I\bibinitperiod}{Reddit}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=875f7267b367080a130feabbf1aa5955}{Inc.}{I\bibinitperiod}{Reddit}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{875f7267b367080a130feabbf1aa5955}
+      \strng{fullhash}{875f7267b367080a130feabbf1aa5955}
+      \field{sortinit}{0}
+      \field{labeltitle}{Reddit API DOCUMENTATION}
+      \field{note}{Accessed: 2014-09-23}
+      \field{title}{Reddit API DOCUMENTATION}
+      \field{year}{2014}
+      \verb{url}
+      \verb http://www.reddit.com/dev/api
+      \endverb
+    \endentry
+    \entry{salton1983introduction}{article}{}
+      \name{labelname}{2}{}{%
+        {{hash=7cce77040cccf3822126400b46318ab3}{Salton}{S\bibinitperiod}{Gerard}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=ba5ce617b1b8e7b5ef38061d0774ff65}{McGill}{M\bibinitperiod}{Michael\bibnamedelima J}{M\bibinitperiod\bibinitdelim J\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=7cce77040cccf3822126400b46318ab3}{Salton}{S\bibinitperiod}{Gerard}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=ba5ce617b1b8e7b5ef38061d0774ff65}{McGill}{M\bibinitperiod}{Michael\bibnamedelima J}{M\bibinitperiod\bibinitdelim J\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{6f226117a0b8f45b03b0d8f6ed793eb4}
+      \strng{fullhash}{6f226117a0b8f45b03b0d8f6ed793eb4}
+      \field{sortinit}{0}
+      \field{labeltitle}{Introduction to modern information retrieval}
+      \field{title}{Introduction to modern information retrieval}
+      \field{year}{1983}
+    \endentry
+    \entry{jordan2002discriminative}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=05efe080e691c96099cf47f82b9470f5}{Jordan}{J\bibinitperiod}{A}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=05efe080e691c96099cf47f82b9470f5}{Jordan}{J\bibinitperiod}{A}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{05efe080e691c96099cf47f82b9470f5}
+      \strng{fullhash}{05efe080e691c96099cf47f82b9470f5}
+      \field{sortinit}{0}
+      \field{labeltitle}{On discriminative vs. generative classifiers: A comparison of logistic regression and naive bayes}
+      \field{journaltitle}{Advances in neural information processing systems}
+      \field{title}{On discriminative vs. generative classifiers: A comparison of logistic regression and naive bayes}
+      \field{volume}{14}
+      \field{year}{2002}
+      \field{pages}{841}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+
