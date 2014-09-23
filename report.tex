@@ -48,15 +48,22 @@ That being said we did find an interesting analysis that aimed to predict the po
 
 \section{Dataset Description}
 
-Reddit's developer API allowed us to download all of the post and comments data into a structured JSON file. Each post is saved in a JSON file under its primary identifier. Each date file consists of 2 main parts, the meta data and the comments. The meta data contains information about the post, such as how many comments there are, the score of the post, a link to the content and the type of content (image, video, article, etc.). The comments section consists of a list the top level comments for that post. Each of the top level comments contains a list of of child comments (replies) which in turn may have their own children. This forms a recursive tree structure with the top level post as the root. 
+Reddit's developer API allowed us to download all of the post and comment data into structured JSON files. Each post is saved in a JSON file under its primary identifier. Each date file consists of 2 main parts, the meta data and the comments. The meta data contains information about the post, such as how many comments there are, the score of the post, a link to the content and the type of content (image, video, article, etc.). The comments section consists of a list the top level comments for that post. Each of the top level comments contains a list of of child comments (replies) which in turn may have their own children. This forms a recursive tree structure with the top level post as the root. 
 
 In order to train our naive Bayes classifier we had to flatten the comments and evaluate the word frequency in each post, this can be done using a simple tree traversal algorithm that can be found in the appendix. 
 
 \section{Methods}
-Naive Bayes Classifier
-The motivation for using Naive Bayes text classifier is that the text data has many features. i.e. since there are many possible words, and not too many text posts and comments in the data from Reddit. Therefore, the combination of words will not likely to appear in the text data to generate models of P(x|y) and apply generative learning (e.g. LDA) to text data classification.
+We used a Naive Bayes classifier with single words (unigrams) as the features. Our choice of this classifier with the given feature set stems from the fact that the feature space, all words, is extremely large so naive Bayes' linear complexity with respect to the number of features was highly desirable. Our choice of feature set stems for the simplicity of extracting the features. Splinting words on spaces and extracting punctuation is a very fast and easy task. Other possible features set that we considered but dit not adopted where bigrams and term frequency–inverse document frequency (tf-idf). On difficulty with bigrams is that increase the sparseness of our features. Also the nature of most reddit comments, short - with poor spelling, grammar, and punctuation, weighs against the usefulness of bi-grams when compared to uni-grams. TF-IDF, which compares the ratio between the frequency of a word in a document and its total frequency is the corpus, is another way to calculate the word frequency but penalizes word that are common among all documents in the corpus. Unfortunately we only learned of this method towards the deadline and did not have time to implement it.
+
+Therefore, the combination of words will not likely to appear in the text data to generate models of P(x|y) and apply generative learning (e.g. LDA) to text data classification.
 Naive Bayes assume the $x$ are conditionally independent given $y$ and simplifies the problem.
-[Insert tree diagram]
+
+\begin{figure}
+  	\includegraphics[scale=1.0]{./sysmag_bayes.png}
+  	\caption{Graphical representation of dependance in the Naive Bayes model. $C$ is the class and $a_i$ are the features. Readers should note that $C$ is dependent of the features but there is no dependence between features. }
+  	\label{fig:RSUencountered}
+\end{figure}
+
 Laplace smoothing was applied since some words are not observed in the training data. The maximum likelihood estimator was,
 \[
 P(x_j|y=1) = \frac {\#[x_j=1 \land y=1]+1}{\#[y=1]+2}
