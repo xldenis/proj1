@@ -18,7 +18,7 @@ We collected a new machine learning dataset from the online social network Reddi
 ]
 \section{What is Reddit?}
 
-Reddit is a popular online link aggregation website. It allows user to post links to other webpages, images, videos, and more and to vote on the popularity of these submissions. Popular submissions are 'Upvoted' while unpopular ones are 'Downvoted'. Users are also allowed to comment on and discuss submissions. Comments, like submissions, are also subject to be voted on. Some of the key vocabulary of reddit is listed below.
+Reddit is a popular online link aggregation website. It allows user to post links to other webpages, images, videos, and more and to vote on the popularity of these submissions. Popular submissions are `Upvoted' while unpopular ones are `Downvoted'. Users are also allowed to comment on and discuss submissions. Comments, like submissions, are also subject to be voted on. Some of the key vocabulary of reddit is listed below.
 \\
 \\
 \textbf{post:} Also know as a submission is a link to another webpage. This webpage may be a news article, a blog post, an image, a video, etc. All posts contain a comment section where user are allowed to discuss the submission.
@@ -54,6 +54,17 @@ That being said we did find an interesting analysis that aimed to predict the po
 Reddit's developer API allowed us to download all of the post and comments data into a structured JSON file. Each post is saved in a JSON file under its primary identifier. Each date file consists of 2 main parts, the meta data and the comments. The meta data contains information about the post, such as how many comments there are, the score of the post, a link to the content and the type of content (image, video, article, etc.). The comments section consists of a list the top level comments for that post. Each of the top level comments contains a list of of child comments (replies) which in turn may have their own children. This forms a recursive tree structure with the top level post as the root. 
 
 In order to train our naive Bayes classifier we had to flatten the comments and evaluate the word frequency in each post, this can be done using a simple tree traversal algorithm that can be found in the appendix. 
+
+\section{Methods}
+Naive Bayes Classifier
+The motivation for using Naive Bayes text classifier is that the text data has many features. i.e. since there are many possible words, and not too many text posts and comments in the data from Reddit. Therefore, the combination of words will not likely to appear in the text data to generate models of P(x|y) and apply generative learning (e.g. LDA) to text data classification.
+Naive Bayes assume the $x$ are conditionally independent given $y$ and simplifies the problem.
+[Insert tree diagram]
+Laplace smoothing was applied since some words are not observed in the training data. The maximum likelihood estimator was,
+\[
+P(x_j|y=1) = \frac {\#[x_j=1 \land y=1]+1}{\#[y=1]+2}
+\]
+Therefore, if there are no words from that class, the prior probability will be $0.5$
 
 \section{Results}
 		
