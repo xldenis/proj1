@@ -1,0 +1,126 @@
+  _____          _     _ _ _     _____        _                 _   
+ |  __ \        | |   | (_) |   |  __ \      | |               | |  
+ | |__) |___  __| | __| |_| |_  | |  | | __ _| |_ __ _ ___  ___| |_ 
+ |  _  // _ \/ _` |/ _` | | __| | |  | |/ _` | __/ _` / __|/ _ \ __|
+ | | \ \  __/ (_| | (_| | | |_  | |__| | (_| | || (_| \__ \  __/ |_ 
+ |_|  \_\___|\__,_|\__,_|_|\__| |_____/ \__,_|\__\__,_|___/\___|\__|
+
+# How to use this date set
+
+This dateset contains a collection of the top 100 from 10 default subreddits.
+
+It contains the top 100 posts of the year starting on 15/8/2014.
+Each post is saved as a JSON file, which is the format reddit supplies.
+The data is seperated into folders based on the subreddit. 
+
+Each JSON file represents a single post and has 2 main parts, the 'meta' section and the 'comments' section.
+
+The 'meta' section contains meta data about the post such as the date of creation,
+the score of the post, the number of comments in the post, as well as the actual link for the post.
+
+The general format of the JSON file is as follows
+
+{
+    "meta": {
+        "approved_by": null,
+        "author": "pimple_poppins",
+        "author_flair_css_class": null,
+        "author_flair_text": null,
+        "banned_by": null,
+        "clicked": false,
+        "created": 1379702114.0,
+        "created_utc": 1379698514.0,
+        "distinguished": null,
+        "domain": "helpmesave300.com",
+        "downs": 0,
+        "edited": false,
+        "gilded": 0,
+        "hidden": false,
+        "id": "1msf8t",
+        "is_self": false,
+        "likes": null,
+        "link_flair_css_class": null,
+        "link_flair_text": null,
+        "media": null,
+        "media_embed": {},
+        "mod_reports": [],
+        "name": "t3_1msf8t",
+        "num_comments": 504,
+        "num_reports": null,
+        "over_18": false,
+        "permalink": "/r/sports/comments/1msf8t/retired_nfl_star_brian_holloways_home_was_broken/",
+        "report_reasons": null,
+        "saved": false,
+        "score": 3105,
+        "secure_media": null,
+        "secure_media_embed": {},
+        "selftext": "",
+        "selftext_html": null,
+        "stickied": false,
+        "subreddit": "sports",
+        "subreddit_id": "t5_2qgzy",
+        "thumbnail": "http://b.thumbs.redditmedia.com/Ethsg15qsnxq2ecm.jpg",
+        "title": "Retired NFL star Brian Holloway's home was broken into by 300 kids who partied and vandalized the home.",
+        "ups": 3105,
+        "url": "http://www.helpmesave300.com/",
+        "user_reports": [],
+        "visited": false
+    },
+    "comments": [ list of commments ... ]
+}
+
+The 'comment' section contains a list of the top level comments from the post.
+
+Each comment has the following structure, the replies section is recursive and contains a list of comments.
+
+Of particular interest are the 'body' field and the score 'field'.
+
+{
+    "approved_by": null,
+    "author": "ThisIsMyCouchAccount",
+    "author_flair_css_class": null,
+    "author_flair_text": null,
+    "banned_by": null,
+    "body": "I think everybody does this. It's their perceived edge is the difference. For some kids it's s
+    "body_html": "&lt;div class=\"md\"&gt;&lt;p&gt;I think everybody does this. It&amp;#39;s their perceive
+    "controversiality": 0,
+    "created": 1379756364.0,
+    "created_utc": 1379752764.0,
+    "distinguished": null,
+    "downs": 0,
+    "edited": false,
+    "gilded": 0,
+    "id": "ccckgle",
+    "likes": null,
+    "link_id": "t3_1msf8t",
+    "mod_reports": [],
+    "name": "t1_ccckgle",
+    "num_reports": null,
+    "parent_id": "t1_cccfxd1",
+    "replies": [ more comment objects ...] ,
+    "report_reasons": null,
+    "saved": false,
+    "score": 10,
+    "score_hidden": false,
+    "subreddit": "sports",
+    "subreddit_id": "t5_2qgzy",
+    "ups": 10,
+    "user_reports": []
+}
+
+Additional to the raw JSON data is our set of extracted features.
+
+For each subreddit we created a cvs file which contains a tabulartion of the
+word frequency for each comments in that subreddit. 
+
+We selected the top 2500 most common words from all our data then for each comment
+created a vector to represent the frequency of theses word in the comment. This
+allowed us to easily segment the testing and training data.
+
+For example:
+
+__________| game| baseball| fan| sport| dog| hello| ... 2494 more words ....
+comment 1 |    1|        1|   0|     0|   0|     0|
+comment 2 |    0|        0|   1|     0|   0|     0|
+comment 3 |    0|        0|   0|     0|   1|     0|
+
