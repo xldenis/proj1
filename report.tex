@@ -2,6 +2,7 @@
 \usepackage{amsthm, amssymb, geometry, mathrsfs}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
+\usepackage[utf8]{inputenc}
 \usepackage{multicol}% http://ctan.org/pkg/multicols
 
 \title {COMP 598: Something Something Reddit}
@@ -24,7 +25,7 @@ Reddit is a popular online link aggregation website. It allows user to post link
 \item \textbf{post:} Also know as a submission is a link to another webpage. This webpage may be a news article, a blog post, an image, a video, etc. All posts contain a comment section where user are allowed to discuss the submission.
 \item \textbf{self post:} Is a special type of post where a user writes their own text submission. This is often used to started discussions or ask questions in a given subreddit. 
 \item \textbf{subreddit:} A subsection of reddit dedicated to a certain topic. 
-\item \textbf{upvote & downvote:} The action of voting on the popularity of a comment in either a positive or negative manner.
+\item \textbf{upvote \& downvote:} The action of voting on the popularity of a comment in either a positive or negative manner.
 \item \textbf{top level comment:} The root of a comment tree.
 \end {enumerate}
 
@@ -65,6 +66,7 @@ Therefore, if there are no words from that class, the prior probability will be 
 \section{Results}
 		
 \section{Discussion}
+The final dataset and features are accurate when classifying but could still be improved. There were several issues during tokenization where standard approaches would fail due to reddit's internal culture. The frequent use of non-textual unicode characters to encode emojis and other information wouldn't be captured by pure word tokenization. Additionally, the presence of Markdown for text formatting adds another level of complexity to the word extraction. We settled on stripping markdown formatting through regexes before splitting on spaces and stemming words. However, there a few issues with things such as `l33tspeak' where numbers are subsistuted for letters, causing use to not recognize identical words. 
 
 Overall our results were quite positive. On possible use of our classifier would be to recommend new subreddits to users based on their comment history. Each user's comments are publicly available on their profile so it would be very easy to classify each of the comments into a given subreddit. If a user's comments where consistently classified into a small subset of subreddits it is possble that they may be interested in that subreddit. On a larger scale, sometimes posts are added to the wrong subreddit, this classifier could detect that comments really belong in a different subreddit and automatically move the entire post to that subreddit where it could recieve the apropriate community interaction.
 
