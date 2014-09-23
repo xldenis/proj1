@@ -74,21 +74,27 @@ Therefore, if there are no words from that class, the prior probability will be 
 
 \section{Results}
 
+Multi-class classification
+We used a single classifier to compute P(y|x) for each class, and selected the class with highest probability.
+The other option is to use k different 1-vs-all binary classifiers. However, this method is computationally slower since many classifiers need to be learned, and the binary classes are imbalanced as the target class has relatively fewer data points compared to the aggregation of all the other classes.
+
+Cross-validation
+10-fold cross validation of the data was used to evaluate performance.
+
 \begin{figure}
     \centering
-  	\includegraphics[scale=0.5]{./binary_data.png}
-  	\caption{Classifier accuracy vs chance.}
+  	\includegraphics[scale=0.4]{./binary_data.png}
+  	\caption{ Binary classification performance as a function of the amount of data. There were a total of 35000 and 45000 comments in the two subreddits sports and books respectively. The performance was measure by 10-fold cross validation on the test data. The error bars represent the standard error of the 10 samples collected in the cross validation.}
   	\label{fig:RSUencountered}
 \end{figure}		
 	
 \begin{figure}
     \centering
   	\includegraphics[scale=0.5]{./roc.png}
-  	\caption{Classifier accuracy vs chance.}
+  	\caption{Receiver-operator characteristics (ROC) curve for binary classification performance using all the data. The classification threshold, i.e. decision boundary, of the naive Bayes classifier was defined by the log posterior of the test data.}
   	\label{fig:RSUencountered}
 \end{figure}		
 	
-		
 \begin{figure}
     \centering
   	\includegraphics[scale=0.4]{./varyWBaseline.png}
@@ -103,7 +109,7 @@ Therefore, if there are no words from that class, the prior probability will be 
   	\caption{Classifier accuracy vs chance.}
   	\label{fig:RSUencountered}
 \end{figure}	
-		
+
 \section{Discussion}
 The final dataset and features are accurate when classifying but could still be improved. There were several issues during tokenization where standard approaches would fail due to reddit's internal culture. The frequent use of non-textual unicode characters to encode emojis and other information wouldn't be captured by pure word tokenization. Additionally, the presence of Markdown for text formatting adds another level of complexity to the word extraction. We settled on stripping markdown formatting through regexes before splitting on spaces and stemming words. However, there a few issues with things such as `l33tspeak' where numbers are subsistuted for letters, causing use to not recognize identical words. 
 
