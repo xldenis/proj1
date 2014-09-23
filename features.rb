@@ -52,18 +52,10 @@ posts.each_with_index do |post,i|
     mini_histo = comment[:tokens].each_with_object(Hash.new(0)) {|w,c| c[w] += 1}
     features.map {|f| mini_histo[f]}
   end
-  puts features
-  name = File.basename(ARGV[i],'.json') + "_filtered.csv"
+  name = "#{File.basename(ARGV[i],'.json')}_#{post.first[:subreddit]}.csv"
   CSV.open(name, 'w') do |csv|
     csv << features
     uni_mat.map {|u| csv << u}
   end
 end
-# File.open(name,'w:UTF-8') {|f| f.write(filtered.to_json)}
 
-# name = File.basename(file,'.json') + "_filtered.csv"
-#   CSV.open(name, 'w') do |csv|
-#     filtered.each do |ft|
-#       csv <<[ft[:author], ft[:body], ft[:subreddit], ft[:score], ft[:tokens].join(" ")]
-#     end
-#   end
