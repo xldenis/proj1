@@ -7,6 +7,7 @@ def markdown_strip(md)
  strip = md.gsub(/!?\[([^\[\]\(\)]*)\]\(.*\)/,'\1') #links
  strip = strip.gsub(/\*\*?([^\*]+)\*\*?/,'\1') #emphasis
  strip = strip.gsub(/\#{1,6}\s*(\w+)\n/,'\1')
+ strip = strip.gsub(/https?:\/\/\S+/,'\1')
 end
 
 def tokenize(string)
