@@ -73,13 +73,36 @@ P(x_j|y=1) = \frac {\#[x_j=1 \land y=1]+1}{\#[y=1]+2}
 Therefore, if there are no words from that class, the prior probability will be $0.5$
 
 \section{Results}
+
+\begin{figure}
+    \centering
+  	\includegraphics[scale=0.5]{./binary_data.png}
+  	\caption{Classifier accuracy vs chance.}
+  	\label{fig:RSUencountered}
+\end{figure}		
+	
+\begin{figure}
+    \centering
+  	\includegraphics[scale=0.5]{./roc.png}
+  	\caption{Classifier accuracy vs chance.}
+  	\label{fig:RSUencountered}
+\end{figure}		
+	
 		
 \begin{figure}
     \centering
-  	\includegraphics[scale=0.5]{./varyWBaseline.png}
-  	\caption{Word frequency of the Sports subreddit.}
+  	\includegraphics[scale=0.4]{./varyWBaseline.png}
+  	\caption{Classifier accuracy vs chance.}
   	\label{fig:RSUencountered}
-\end{figure}		
+\end{figure}	
+	
+	
+\begin{figure}
+    \centering
+  	\includegraphics[scale=0.4]{./confusion_mat.png}
+  	\caption{Classifier accuracy vs chance.}
+  	\label{fig:RSUencountered}
+\end{figure}	
 		
 \section{Discussion}
 The final dataset and features are accurate when classifying but could still be improved. There were several issues during tokenization where standard approaches would fail due to reddit's internal culture. The frequent use of non-textual unicode characters to encode emojis and other information wouldn't be captured by pure word tokenization. Additionally, the presence of Markdown for text formatting adds another level of complexity to the word extraction. We settled on stripping markdown formatting through regexes before splitting on spaces and stemming words. However, there a few issues with things such as `l33tspeak' where numbers are subsistuted for letters, causing use to not recognize identical words. 
