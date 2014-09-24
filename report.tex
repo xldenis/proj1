@@ -71,13 +71,13 @@ In order to train our naive Bayes classifier we had to flatten the comments and 
 
 \section{Methods}
 
-We used a Naive Bayes classifier with single words (unigrams) as the features. We choose this classifier with the given feature set because the feature space, all words, is extremely large. Given that naive Bayes' complexity is linear with respect to the number of features we believe this to be a good choise. Our choice of feature set stems from the simplicity and speed of extracting single words from the text. This consisted of splitting the text on spaces and removing punctuation. 
+We used a Naive Bayes classifier with single words (unigrams) as the features. We choose this classifier with the given feature set because the feature space, all words, is extremely large. Given that naive Bayes' complexity is linear with respect to the number of features we believe this to be a good choice \cite{hastie2009elements}. Our choice of feature set stems from the simplicity and speed of extracting single words from the text. This consisted of splitting the text on spaces and removing punctuation. 
 
 Other possible features sets that we considered but were not adopted were bigrams and term frequency–inverse document frequency (TF-IDF)\cite{salton1983introduction}. One of the difficulties with bigrams is that they increase the sparseness of the features. This fact couple with the nature of most reddit comments, short - with poor spelling, grammar, and punctuation, weighed against the perceived usefulness of bi-grams when compared to uni-grams.
 
-The other feature set we considered  was TF-IDF. This compares the ratio between the frequency of a word in a document and its total frequency in the text corpus. This gives use another way to calculate the word frequency but penalizes words which are common among all documents in the corpus. Unfortunately we only learned of this method towards the deadline and did not have time to implement it.
+The other feature set we considered  was TF-IDF. This compares the ratio between the frequency of a word in a document and its total frequency in the text corpus. This gives another way to calculate the word frequency but penalizes words which are common among all documents in the corpus. Unfortunately, we only learned of this method towards the deadline and did not have time to implement it.
 
-The naive Bayes classifier is a simple probabilistic classifier that relies on Bayes' rule and the assumption that features are conditional independent. While this generaly untrue it has been shown to be quite accurate in practice. The output of the classifier is the probability that a given set of features $f_1,f_2,...f_n$ belong to the class $C$. When expressed together with Bayes' rule we get the following.
+The naive Bayes classifier is a simple probabilistic classifier that relies on Bayes' rule and the assumption that features are conditional independent \cite{bishop2006pattern}. While this generaly untrue it has been shown to be quite accurate in practice. The output of the classifier is the probability that a given set of features $f_1,f_2,...f_n$ belong to the class $C$. When expressed together with Bayes' rule we get the following (Fig 2).
 
 \[ Pr(C|f_1,f_2,...f_n) = \frac{Pr(C) \cdot Pr(f_1,f_2,...f_n|C)}{Pr(f_1,f_2,...,f_n)} \]
 
@@ -91,17 +91,15 @@ Thus the final goal of the classifier is:
 
 \[ argmax_c (C) = Pr(C) \cdot \prod_{i=0}^{n} Pr(f_i|C) \]
 
-For our classifier we used Laplace smoothing since some words are not observed in the training data. The maximum likelihood estimator was,
+For our classifier we used Laplace smoothing since some words are not observed in the training data for the classifier. The maximum likelihood estimator for the classifier was,
 \[
-Pr(x_j|y=1) = \frac {\#[x_j=1 \land y=1]+1}{\#[y=1]+2}
+Pr(x_i|y=C) = \frac {\Pr[x_i=1 \land y=1]+1}{\Pr[y=1]+2}
 \]
-Therefore, if there are no words from that class, the prior probability will be $0.5$, this prior avoids making any assumptions about the likelyhood of observing a word in the dataset.
+Therefore, if there are no feature words from that class, the prior probability will be $0.5$, this prior avoids making any assumptions about the likelyhood of observing a word in the dataset \cite{bishop2006pattern}.
 
 \subsection*{Multi-class classification}
-We used a single classifier to compute P(y|x) for each class, and selected the class with highest probability.
+We used a single classifier to compute $P(C|f_1,f_2,...f_n$) for each class, and selected the class with highest probability.
 The other option is to use k different 1-vs-all binary classifiers. However, this method is computationally slower since many classifiers need to be learned, and the binary classes are imbalanced as the target class has relatively fewer data points compared to the aggregation of all the other classes.
-
-
 
 \begin{figure}
     \centering  
@@ -110,9 +108,14 @@ The other option is to use k different 1-vs-all binary classifiers. However, thi
     \label{bayesnet}
 \end{figure}
 
-Once all the features for the class were collected, we used a single classifier to compute P(y|x) for each class, selecting the highest probability class. The other option is to use $k$ different 1-vs-all binary classifiers. However, this method is computationally slower since many classifiers need to be learned, and the binary classes are imbalanced as the target class has relatively fewer data points compared to the aggregation of all the other classes.
+\subsection*{Features selection and cross validation method}
+For our features, we selected 2500 most frequently occurring single words, more specifically, unigrams, in the entire dataset to generate a features dictionary. Unigram were used as features, since bigrams can be sparse in the comments (Go et al. 2009). Also, reddit comments are likely to not follow standard grammar and/or spelling rules, therefore, unigram features with single words or part of words are optimal.
+To validate our results we performed 10-fold cross validation on our classifier (Fig \ref{multiclass}). We divided the data, i.e. comments, from each subreddits, into 10 groups at random. The naive Bayes classifier was built from the data from 9 groups and the features from all the data. The classifier was then used to predict the subreddit(s) for the comments in the group left out and measure the prediction error. This training and testing procedure was repeated 10 time for each group to provide the final 10-fold cross-validation measure of the prediction error.
 
-To validate our results we performed 10-fold cross validation on our classifier (Fig \ref{multiclass}).
+For classification problems with large number of features, that’s far greater than the number of data. This method might be prone to overfitting, since the full dataset was used to select the features. Therefore, we might have a slightly biased estimate of the generalization error in the testing set.
+
+This can be avoided by selecting features only from the training data or from random samples of the data as discussed in class. These other options are computationally costly especially for large text dataset like ours, and might not be feasibly given limited time. Since we have a large data set with entirely 40,000-100,000 comments per subreddit and relatively small number of features, 2500, our cross-validation method might not be as prone to overfitting.
+
 \section{Results}
 \begin{figure}
     \centering
