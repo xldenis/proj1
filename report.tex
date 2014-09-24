@@ -16,7 +16,7 @@
 \twocolumn[
 \maketitle
 \section{Abstract}
-We collect a new machine learning dataset from the online social network Reddit. Consisting of the Top 100 posts from 2014, along with their comments from  the 10 most popular subreddits. We implement a Naive Bayes classifier to classify the subreddit which the comment belongs. The binary classification performance of  Naive Bayes reaches 89\% after 10-fold cross validation with around 80,000 comments. The multi-class classification performance with 6 classes using 35k-94k comments per class is 50\%. This work shows the possibility of recommending comment automatically based off of a user's comment history on Reddit.
+In this paper we collect a new machine learning dataset from the online social network Reddit. Consisting of 100 recent posts, with comments taken from each of the 9 most popular subreddits, this dataset provides new  questions. We implement a Naive Bayes classifier to classify the subreddit which the comment belongs. This classifier achieves 80\% performance in binary classification of 80,000 comments with 10-fold cross validation. When comparing 6 classes of 35k-94k comments each, it achieves 50\% performance. This work shows the possibility of recommending subreddits automatically based off of a user's comment history on Reddit.
 \\
 \\
 ]
@@ -35,7 +35,7 @@ Reddit is a popular online link aggregation website. It allows user to both post
 \section{Motivation}
 With the rise of social networks, many researchers have poured over the data produced to find explore the connections between friends, text, and social interactions. While much research has been done on networks such as Twitter and Facebook, Reddit has remained largely ignored. The different structure of Reddit allows for an opportunity to look at different questions and a different style of conversation. Because Reddit users can label comments and posts as good or bad through voting, we can attempt to predict the interests of Reddit users.
 
-Reddit also offers easy access to data for research and non-commercial purposes through it's API.\cite{Reddit}. 
+Reddit also offers easy access to data for research and non-commercial purposes through it's API.\cite{reddit}. 
 
 \begin{figure*}
     \centering

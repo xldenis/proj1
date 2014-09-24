@@ -19,6 +19,24 @@
 
 \refsection{0}
   \sortlist{entry}{none}
+    \entry{reddit}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=875f7267b367080a130feabbf1aa5955}{Inc.}{I\bibinitperiod}{Reddit}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=875f7267b367080a130feabbf1aa5955}{Inc.}{I\bibinitperiod}{Reddit}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{875f7267b367080a130feabbf1aa5955}
+      \strng{fullhash}{875f7267b367080a130feabbf1aa5955}
+      \field{sortinit}{0}
+      \field{labeltitle}{Reddit API DOCUMENTATION}
+      \field{note}{Accessed: 2014-09-23}
+      \field{title}{Reddit API DOCUMENTATION}
+      \field{year}{2014}
+      \verb{url}
+      \verb http://www.reddit.com/dev/api
+      \endverb
+    \endentry
     \entry{flesch1949art}{book}{}
       \name{labelname}{2}{}{%
         {{hash=4b3f122b3677e77e2a8dca8db9f16032}{Flesch}{F\bibinitperiod}{Rudolf}{R\bibinitperiod}{}{}{}{}}%
@@ -72,23 +90,6 @@
       \field{title}{Introduction to modern information retrieval}
       \field{year}{1983}
     \endentry
-    \entry{jordan2002discriminative}{article}{}
-      \name{labelname}{1}{}{%
-        {{hash=05efe080e691c96099cf47f82b9470f5}{Jordan}{J\bibinitperiod}{A}{A\bibinitperiod}{}{}{}{}}%
-      }
-      \name{author}{1}{}{%
-        {{hash=05efe080e691c96099cf47f82b9470f5}{Jordan}{J\bibinitperiod}{A}{A\bibinitperiod}{}{}{}{}}%
-      }
-      \strng{namehash}{05efe080e691c96099cf47f82b9470f5}
-      \strng{fullhash}{05efe080e691c96099cf47f82b9470f5}
-      \field{sortinit}{0}
-      \field{labeltitle}{On discriminative vs. generative classifiers: A comparison of logistic regression and naive bayes}
-      \field{journaltitle}{Advances in neural information processing systems}
-      \field{title}{On discriminative vs. generative classifiers: A comparison of logistic regression and naive bayes}
-      \field{volume}{14}
-      \field{year}{2002}
-      \field{pages}{841}
-    \endentry
     \entry{gruber}{online}{}
       \field{sortinit}{0}
       \field{labeltitle}{Markdown: Syntax}
@@ -121,7 +122,6 @@
       \field{pages}{130\bibrangedash 137}
     \endentry
   \endsortlist
-  \missing{Reddit}
 \endrefsection
 \endinput
 
