@@ -12,7 +12,9 @@ def serial(obj):
 r = praw.Reddit('COMP-598 ML BOT'
                 'Url: www.cs.mcgill.ca')
 
-r.login('en4bz')
+USER_NAME= 'en4bz'
+PASSWORD = 'xxxxxx'
+r.login(USER_NAME,PASSWORD)
 # Get all top post from this week. Currently the first page (25 posts)
 # Need to set 'limit=x' to get x posts.
 posts = r.get_subreddit(sys.argv[1]).get_top_from_year(limit=100)
