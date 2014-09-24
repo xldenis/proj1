@@ -49,6 +49,17 @@ Due to the lack of studies related to Reddit there are few related datasets or p
 
 However, we did find an interesting analysis that aimed to predict the popularity of a self post based on its Flesch-Kincaid\cite{flesch1949art} readability. This project found a correlation between how easy a self post was to read and how popular it would be. In particular posts with moderate readability where more popular than others with easy or hard readability.
 
+Our classification problem also has a stark resemblance to the 20 news groups problem of \cite{joachims1996probabilistic}. This paper is the original 20 news groups paper and compares the performance of various classification algorithms. The paper presents a Text Frequency - Inverse Document Frequency (TF-IDF) algorithm as well a probabilistic variation on this algorithm. The authors compared the performance of these two algorithms, along with a naive Bayes classifier, to gauge their relative performance. In the end the performance of the algorithms was as follows.
+\\
+
+\begin{tabular}{|c|c|}
+\hline
+Probabilistic TF-IDF & 90.3 \\
+Naive Bayes & 88.6 \\
+TD-IDF & 82.3 \\
+\hline
+\end{tabular}
+
 \section{Dataset Description}
 
 Reddit's developer API allowed us to download all of the post and comment data into structured JSON files. Each post is saved in a JSON file under its primary identifier. Each data file consists of 2 main parts, the meta data and the comments. The meta data contains information about the post, such as how many comments there are, the score of the post, a link to the content and the type of content (image, video, article, etc.). The comments section consists of a list the top level comments for that post. Each of the top level comments contains a list of of child comments (replies) which in turn may have their own children. 
@@ -56,11 +67,23 @@ Reddit's developer API allowed us to download all of the post and comment data i
 In order to train our naive Bayes classifier we had to flatten the comments and evaluate the global word frequency for all the posts, creating a unigram frequency matrix for each post with comments as rows and features as columns.
 
 \section{Methods}
-We used a Naive Bayes classifier with single words (unigrams) as the features. Our choice of this classifier with the given feature set stems from the fact that the feature space, all words, is extremely large so naive Bayes' linear complexity with respect to the number of features was highly desirable. Our choice of feature set stems for the simplicity of extracting the features. Splinting words on spaces and extracting punctuation is a very fast and easy task. Other possible features set that we considered but dit not adopted where bigrams and term frequency–inverse document frequency (tf-idf)\cite{salton1983introduction}. On difficulty with bigrams is that increase the sparseness of our features. Also the nature of most Reddit comments, short - with poor spelling, grammar, and punctuation, weighs against the usefulness of bi-grams when compared to uni-grams. TF-IDF, which compares the ratio between the frequency of a word in a document and its total frequency is the corpus, is another way to calculate the word frequency but penalizes word that are common among all documents in the corpus. Unfortunately we only learned of this method towards the deadline and did not have time to implement it.
+
+We used a Naive Bayes classifier with single words (unigrams) as the features. We choose this classifier with the given feature set because the feature space, all words, is extremely large. Given that naive Bayes' complexity is linear with respect to the number of features we believe this to be a good choise. Our choice of feature set stems from the simplicity and speed of extracting single words from the text. This consisted of splitting the text on spaces and removing punctuation. 
+
+Other possible features sets that we considered but were not adopted were bigrams and term frequency–inverse document frequency (TF-IDF)\cite{salton1983introduction}. One of the difficulties with bigrams is that they increase the sparseness of the features. This fact couple with the nature of most reddit comments, short - with poor spelling, grammar, and punctuation, weighed against the perceived usefulness of bi-grams when compared to uni-grams.
+
+The other feature set we considered  was TF-IDF. This compares the ratio between the frequency of a word in a document and its total frequency in the text corpus. This gives use another way to calculate the word frequency but penalizes words which are common among all documents in the corpus. Unfortunately we only learned of this method towards the deadline and did not have time to implement it.
+
+The naive Bayes classifier is a simple probabilistic classifier that relies on Bayes' rule and the assumption that features are conditional independent. While this assumption is grossly inaccurate, it has been shown to be quite accurate. The output of the classifier the probability that a given set of features $f_1,f_2,...f_n$ belong to the class $C$. 
+
+\[ Pr(C|f_1,f_2,...f_n) = \frac{Pr(C) \cdot Pr(f_1,f_2,...f_n|C)}{Pr(f_1,f_2,...,f_n)} \]
 
 Therefore, the combination of words will not likely to appear in the text data to generate models of P(x|y) and apply generative learning (e.g. LDA) to text data classification.
 Naive Bayes assume the $x$ are conditionally independent given $y$ and simplifies the problem.\autocite{jordan2002discriminative}
 
+\subsection*{Multi-class classification}
+We used a single classifier to compute P(y|x) for each class, and selected the class with highest probability.
+The other option is to use k different 1-vs-all binary classifiers. However, this method is computationally slower since many classifiers need to be learned, and the binary classes are imbalanced as the target class has relatively fewer data points compared to the aggregation of all the other classes.
 
 Laplace smoothing was applied since some words are not observed in the training data. The maximum likelihood estimator was,
 \[
@@ -112,7 +135,7 @@ We measured good classification performance, attaining approximately $80\%$ perf
 \section{Discussion}
 The final dataset and features are accurate when classifying but could still be improved. There were several issues during tokenization where standard approaches would fail due to Reddit's internal culture. The frequent use of non-textual unicode characters to encode emojis and other information wouldn't be captured by pure word tokenization. Additionally, the presence of Markdown for text formatting adds another level of complexity to the word extraction. We settled on stripping markdown formatting through regexes before splitting on spaces and stemming words. However, there a few issues with things such as `l33tspeak' where numbers are subsistuted for letters, causing use to not recognize identical words. 
 
-Overall our results were quite positive. On possible use of our classifier would be to recommend new subreddits to users based on their comment history. Each user's comments are publicly available on their profile so it would be very easy to classify each of the comments into a given subreddit. If a user's comments where consistently classified into a small subset of subreddits it is possble that they may be interested in that subreddit. On a larger scale, sometimes posts are added to the wrong subreddit, this classifier could detect that comments really belong in a different subreddit and automatically move the entire post to that subreddit where it could recieve the apropriate community interaction.
+Overall our results were quite positive. On possible use of our classifier would be to recommend new subreddits to users based on their comment history. Each user's comments are publicly available on their profile so it would be very easy to classify each of the comments into a given subreddit. If a user's comments where consistently classified into a small subset of subreddits it is possble that they may be interested in that subreddit. On a larger scale, sometimes posts are added to the wrong subreddit, this classifier could detect that comments really belong in a different subreddit and automatically move the entire post to that subreddit where it could receive the appropriate community interaction.
 
 We hereby state that all the work presented in the report is that of the authors.
 
