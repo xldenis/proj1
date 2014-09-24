@@ -60,25 +60,23 @@ We used a Naive Bayes classifier with single words (unigrams) as the features. O
 Therefore, the combination of words will not likely to appear in the text data to generate models of P(x|y) and apply generative learning (e.g. LDA) to text data classification.
 Naive Bayes assume the $x$ are conditionally independent given $y$ and simplifies the problem.\autocite{jordan2002discriminative}
 
-Multi-class classification
-We used a single classifier to compute P(y|x) for each class, and selected the class with highest probability.
-The other option is to use k different 1-vs-all binary classifiers. However, this method is computationally slower since many classifiers need to be learned, and the binary classes are imbalanced as the target class has relatively fewer data points compared to the aggregation of all the other classes.
-
-Cross-validation
-10-fold cross validation of the data was used to evaluate performance.
-
-\begin{figure}
-    \centering  
-  	\includegraphics[width=0.5\textwidth]{./sysmag_bayes.png}
-  	\caption{Graphical representation of dependance in the Naive Bayes model. $C$ is the class and $a_i$ are the features. Readers should note that $C$ is dependent of the features but there is no dependence between features. }
-  	\label{bayesnet}
-\end{figure}
 
 Laplace smoothing was applied since some words are not observed in the training data. The maximum likelihood estimator was,
 \[
 P(x_j|y=1) = \frac {\#[x_j=1 \land y=1]+1}{\#[y=1]+2}
 \]
-Therefore, if there are no words from that class, the prior probability will be $0.5$
+Therefore, if there are no words from that class, the prior probability will be $0.5$, this prior avoids making any assumptions about the likelyhood of observing a word in the dataset.
+
+\begin{figure}
+    \centering  
+    \includegraphics[width=0.5\textwidth]{./sysmag_bayes.png}
+    \caption{Graphical representation of dependance in the Naive Bayes model. $C$ is the class and $a_i$ are the features. Readers should note that $C$ is dependent of the features but there is no dependence between features. }
+    \label{bayesnet}
+\end{figure}
+
+Once all the features for the class were collected, we used a single classifier to compute P(y|x) for each class, selecting the highest probability class. The other option is to use $k$ different 1-vs-all binary classifiers. However, this method is computationally slower since many classifiers need to be learned, and the binary classes are imbalanced as the target class has relatively fewer data points compared to the aggregation of all the other classes.
+
+To validate our results we performed 10-fold cross validation on our classifier (Fig \ref{multiclass}).
 \section{Results}
 \begin{figure}
     \centering
