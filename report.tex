@@ -16,24 +16,24 @@
 \twocolumn[
 \maketitle
 \section{Abstract}
-In this paper we collect a new machine learning dataset from the online social network Reddit. Consisting of 100 recent posts, with comments taken from each of the 9 most popular subreddits, this dataset provides new  questions. We implement a Naive Bayes classifier to classify the subreddit which the comment belongs. This classifier achieves 80\% performance in binary classification of 80,000 comments with 10-fold cross validation. When comparing 6 classes of 35k-94k comments each, it achieves 50\% performance. This work shows the possibility of recommending subreddits automatically based off of a user's comment history on Reddit.
+In this paper we collect a new machine learning dataset from the online social network Reddit. Consisting of 100 recent posts, with comments taken from each of the 9 most popular subreddits, this dataset provides new  questions. We implement a Naive Bayes classifier to classify the subreddit which the comment belongs. This classifier achieves 80\% performance in binary classification of 80,000 comments with 10-fold cross validation. When comparing 6 classes of 35k-94k comments each, it achieves 50\% performance. This work presents the possibility of recommending subreddits automatically based off of a user's comment history on Reddit.
 \\
 \\
 ]
 \section{What is Reddit?}
 
-Reddit is a popular online link aggregation website. It allows user to both post links to other webpages, images, videos, and more and to vote on the popularity of these submissions. Popular submissions are `Upvoted' while unpopular ones are `Downvoted'. Users are also allowed to comment on and discuss submissions. Comments, like submissions, are also voted on. Some of the key vocabulary of Reddit is listed below.
+Reddit is a popular online link aggregation website. It allows user to both post links to other webpages, images, videos, and more and to vote on the popularity of these submissions. Popular submissions are `Upvoted' while unpopular ones are `Downvoted'. Users are also allowed to comment on and discuss submissions. Comments, like submissions, can also be voted on. Some of the key vocabulary of Reddit is listed below.
 
 \begin {enumerate}
 \item \textbf{Post:} Also know as a submission is a link to another webpage. This webpage may be a news article, a blog post, an image, a video, etc. All posts contain a comment section where user are allowed to discuss the submission.
 \item \textbf{Self Post:} Is a special type of post where a user writes their own text submission. This is often used to started discussions or ask questions in a given subreddit. 
 \item \textbf{Subreddit:} A subsection of Reddit dedicated to a certain topic. 
-\item \textbf{Upvote \& Downvote:} The action of voting on the popularity of a comment in either a positive or negative manner.
+\item \textbf{Upvote \& Downvote:} The action of voting on the popularity of a comment or post in either a positive or negative manner.
 \item \textbf{Top level comment:} The root of a comment tree.
 \end {enumerate}
 
 \section{Motivation}
-With the rise of social networks, many researchers have poured over the data produced to find explore the connections between friends, text, and social interactions. While much research has been done on networks such as Twitter and Facebook, Reddit has remained largely ignored. The different structure of Reddit allows for an opportunity to look at different questions and a different style of conversation. Because Reddit users can label comments and posts as good or bad through voting, we can attempt to predict the interests of Reddit users.
+With the rise of social networks, many researchers have poured over the data produced to find and explore the connections between friends, text, and social interactions. While much research has been done on networks such as Twitter and Facebook, Reddit has remained largely ignored. The different structure of Reddit allows for an opportunity to look at different questions and a different style of conversation. Because Reddit users can label comments and posts as good or bad through voting, we can attempt to predict the interests of Reddit users.
 
 Reddit also offers easy access to data for research and non-commercial purposes through it's API.\cite{reddit}. 
 
@@ -48,9 +48,9 @@ Reddit also offers easy access to data for research and non-commercial purposes 
 
 Due to the lack of studies related to Reddit there are few related datasets or papers. A search through Google Scholar produces few results and the top links are only listed because of share buttons on the paper's hosting site. Most of the related research we found were University projects like our own. We could not find any published papers or data.
 
-However, we did find an interesting analysis that aimed to predict the popularity of a self post based on its Flesch-Kincaid\cite{flesch1949art} readability. This project found a correlation between how easy a self post was to read and how popular it would be. In particular posts with moderate readability where more popular than others with easy or hard readability.
+However, we did find an interesting analysis\cite{bcjordan}as that aimed to predict the popularity of a self post based on its Flesch-Kincaid\cite{flesch1949art} readability. This project found a correlation between how easy a self post was to read and how popular it would be. In particular posts with moderate readability where more popular than others with easy or hard readability.
 
-Our classification problem also has a stark resemblance to the 20 news groups problem of \cite{joachims1996probabilistic}. This paper is the original 20 news groups paper and compares the performance of various classification algorithms. The paper presents a Text Frequency - Inverse Document Frequency (TF-IDF) algorithm as well a probabilistic variation on this algorithm. The authors compared the performance of these two algorithms, along with a naive Bayes classifier, to gauge their relative performance. In the end the performance of the algorithms was as follows.
+Our classification problem also has a stark resemblance to the 20 news groups problem of \cite{joachims1996probabilistic}. This paper is the original 20 news groups paper and compares the performance of various classification algorithms. The paper presents a Text Frequency - Inverse Document Frequency (TF-IDF) algorithm as well as a probabilistic variation on this algorithm. The authors compared the performance of these two algorithms, along with a naive Bayes classifier, to gauge their relative performance. In the end the performance of the algorithms was as follows.
 \\
 
 \begin{center}
