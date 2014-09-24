@@ -19,23 +19,42 @@
 
 \refsection{0}
   \sortlist{entry}{none}
-    \entry{reddit}{online}{}
+    \entry{flesch1949art}{book}{}
+      \name{labelname}{2}{}{%
+        {{hash=4b3f122b3677e77e2a8dca8db9f16032}{Flesch}{F\bibinitperiod}{Rudolf}{R\bibinitperiod}{}{}{}{}}%
+        {{hash=a5496e5dba18a5034210e59132e10f31}{Gould}{G\bibinitperiod}{Alan\bibnamedelima J}{A\bibinitperiod\bibinitdelim J\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=4b3f122b3677e77e2a8dca8db9f16032}{Flesch}{F\bibinitperiod}{Rudolf}{R\bibinitperiod}{}{}{}{}}%
+        {{hash=a5496e5dba18a5034210e59132e10f31}{Gould}{G\bibinitperiod}{Alan\bibnamedelima J}{A\bibinitperiod\bibinitdelim J\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {Harper New York}%
+      }
+      \strng{namehash}{01a58fe36d22c0ca43cd6b78292a168a}
+      \strng{fullhash}{01a58fe36d22c0ca43cd6b78292a168a}
+      \field{sortinit}{0}
+      \field{labeltitle}{The art of readable writing}
+      \field{title}{The art of readable writing}
+      \field{year}{1949}
+    \endentry
+    \entry{joachims1996probabilistic}{report}{}
       \name{labelname}{1}{}{%
-        {{hash=875f7267b367080a130feabbf1aa5955}{Inc.}{I\bibinitperiod}{Reddit}{R\bibinitperiod}{}{}{}{}}%
+        {{hash=0e5ae7e30da87e8ba62ced27d4e6f2aa}{Joachims}{J\bibinitperiod}{Thorsten}{T\bibinitperiod}{}{}{}{}}%
       }
       \name{author}{1}{}{%
-        {{hash=875f7267b367080a130feabbf1aa5955}{Inc.}{I\bibinitperiod}{Reddit}{R\bibinitperiod}{}{}{}{}}%
+        {{hash=0e5ae7e30da87e8ba62ced27d4e6f2aa}{Joachims}{J\bibinitperiod}{Thorsten}{T\bibinitperiod}{}{}{}{}}%
       }
-      \strng{namehash}{875f7267b367080a130feabbf1aa5955}
-      \strng{fullhash}{875f7267b367080a130feabbf1aa5955}
+      \list{institution}{1}{%
+        {DTIC Document}%
+      }
+      \strng{namehash}{0e5ae7e30da87e8ba62ced27d4e6f2aa}
+      \strng{fullhash}{0e5ae7e30da87e8ba62ced27d4e6f2aa}
       \field{sortinit}{0}
-      \field{labeltitle}{Reddit API DOCUMENTATION}
-      \field{note}{Accessed: 2014-09-23}
-      \field{title}{Reddit API DOCUMENTATION}
-      \field{year}{2014}
-      \verb{url}
-      \verb http://www.reddit.com/dev/api
-      \endverb
+      \field{labeltitle}{A Probabilistic Analysis of the Rocchio Algorithm with TFIDF for Text Categorization.}
+      \field{title}{A Probabilistic Analysis of the Rocchio Algorithm with TFIDF for Text Categorization.}
+      \field{type}{techreport}
+      \field{year}{1996}
     \endentry
     \entry{salton1983introduction}{article}{}
       \name{labelname}{2}{}{%
@@ -70,7 +89,39 @@
       \field{year}{2002}
       \field{pages}{841}
     \endentry
+    \entry{gruber}{online}{}
+      \field{sortinit}{0}
+      \field{labeltitle}{Markdown: Syntax}
+      \field{note}{Accessed: 2014-09-23}
+      \field{title}{Markdown: Syntax}
+      \field{year}{2004}
+      \verb{url}
+      \verb http://daringfireball.net/projects/markdown/syntax
+      \endverb
+    \endentry
+    \entry{porter1980algorithm}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=4387697d031949be5d70a480e7072961}{Porter}{P\bibinitperiod}{Martin\bibnamedelima F}{M\bibinitperiod\bibinitdelim F\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=4387697d031949be5d70a480e7072961}{Porter}{P\bibinitperiod}{Martin\bibnamedelima F}{M\bibinitperiod\bibinitdelim F\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {MCB UP Ltd}%
+      }
+      \strng{namehash}{4387697d031949be5d70a480e7072961}
+      \strng{fullhash}{4387697d031949be5d70a480e7072961}
+      \field{sortinit}{0}
+      \field{labeltitle}{An algorithm for suffix stripping}
+      \field{journaltitle}{Program: electronic library and information systems}
+      \field{number}{3}
+      \field{title}{An algorithm for suffix stripping}
+      \field{volume}{14}
+      \field{year}{1980}
+      \field{pages}{130\bibrangedash 137}
+    \endentry
   \endsortlist
+  \missing{Reddit}
 \endrefsection
 \endinput
 
