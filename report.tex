@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage[style=ieee]{biblatex}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
 \addbibresource{citations.bib}
 \usepackage{multicol}% http://ctan.org/pkg/multicols
 
@@ -74,22 +75,31 @@ Other possible features sets that we considered but were not adopted were bigram
 
 The other feature set we considered  was TF-IDF. This compares the ratio between the frequency of a word in a document and its total frequency in the text corpus. This gives use another way to calculate the word frequency but penalizes words which are common among all documents in the corpus. Unfortunately we only learned of this method towards the deadline and did not have time to implement it.
 
-The naive Bayes classifier is a simple probabilistic classifier that relies on Bayes' rule and the assumption that features are conditional independent. While this assumption is grossly inaccurate, it has been shown to be quite accurate. The output of the classifier the probability that a given set of features $f_1,f_2,...f_n$ belong to the class $C$. 
+The naive Bayes classifier is a simple probabilistic classifier that relies on Bayes' rule and the assumption that features are conditional independent. While this generaly untrue it has been shown to be quite accurate in practice. The output of the classifier is the probability that a given set of features $f_1,f_2,...f_n$ belong to the class $C$. When expressed together with Bayes' rule we get the following.
 
 \[ Pr(C|f_1,f_2,...f_n) = \frac{Pr(C) \cdot Pr(f_1,f_2,...f_n|C)}{Pr(f_1,f_2,...,f_n)} \]
 
-Therefore, the combination of words will not likely to appear in the text data to generate models of P(x|y) and apply generative learning (e.g. LDA) to text data classification.
-Naive Bayes assume the $x$ are conditionally independent given $y$ and simplifies the problem.\autocite{jordan2002discriminative}
+Now we can simplify the equation by invoking our independence assumption about the features. This leaves us with
+
+\[ Pr(C|f_1,f_2,...f_n) =  Pr(C) \cdot \prod_{i=0}^{n} Pr(f_i|C) \]
+
+Note that since $Pr(f_1,f_2,...,f_n)$ does not depend on $C$, and we are trying to maximize over $C$, we can consider it to be constant.
+
+Thus the final goal of the classifier is:
+
+\[ argmax_c (C) = Pr(C) \cdot \prod_{i=0}^{n} Pr(f_i|C) \]
+
+For our classifier we used Laplace smoothing since some words are not observed in the training data. The maximum likelihood estimator was,
+\[
+Pr(x_j|y=1) = \frac {\#[x_j=1 \land y=1]+1}{\#[y=1]+2}
+\]
+Therefore, if there are no words from that class, the prior probability will be $0.5$, this prior avoids making any assumptions about the likelyhood of observing a word in the dataset.
 
 \subsection*{Multi-class classification}
 We used a single classifier to compute P(y|x) for each class, and selected the class with highest probability.
 The other option is to use k different 1-vs-all binary classifiers. However, this method is computationally slower since many classifiers need to be learned, and the binary classes are imbalanced as the target class has relatively fewer data points compared to the aggregation of all the other classes.
 
-Laplace smoothing was applied since some words are not observed in the training data. The maximum likelihood estimator was,
-\[
-P(x_j|y=1) = \frac {\#[x_j=1 \land y=1]+1}{\#[y=1]+2}
-\]
-Therefore, if there are no words from that class, the prior probability will be $0.5$, this prior avoids making any assumptions about the likelyhood of observing a word in the dataset.
+
 
 \begin{figure}
     \centering  
