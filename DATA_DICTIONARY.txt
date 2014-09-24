@@ -7,6 +7,8 @@
 
 # How to use this date set
 
+An XML list of all files can be found at: http://comp598.s3.amazonaws.com/
+
 This dateset contains a collection of the top 100 from 10 default subreddits.
 
 It contains the top 100 posts of the year as of 15/8/2014.
@@ -69,6 +71,8 @@ The general format of the JSON file is as follows
     "comments": [ list of commments ... ]
 }
 
+Classes and labels, such as subreddit, can be extracted from the meta data.
+
 The 'comment' section contains a list of the top level comments from the post.
 
 Each comment has the following structure, the replies section is recursive and contains a list of comments.
@@ -108,14 +112,28 @@ Of particular interest are the 'body' field and the score 'field'. The strcuture
     "user_reports": []
 }
 
+The raw compressed JSON for each subreddit can be downloaded from our AWS bucket using the following links.
+
+http://comp598.s3.amazonaws.com/compressed/aww.tgz
+http://comp598.s3.amazonaws.com/compressed/books.tgz
+http://comp598.s3.amazonaws.com/compressed/funny.tgz
+http://comp598.s3.amazonaws.com/compressed/iama.tgz
+http://comp598.s3.amazonaws.com/compressed/movies.tgz
+http://comp598.s3.amazonaws.com/compressed/news.tgz
+http://comp598.s3.amazonaws.com/compressed/pics.tgz
+http://comp598.s3.amazonaws.com/compressed/science.tgz
+http://comp598.s3.amazonaws.com/compressed/sports.tgz
+http://comp598.s3.amazonaws.com/compressed/videos.tgz
+
 Additional to the raw JSON data is our set of extracted features.
 
 For each subreddit we created a cvs file which contains a tabulartion of the
-word frequency for each comments in that subreddit. 
+word frequency for each of the comments in that subreddit.
 
-We selected the top 2500 most common words from all our data set then for each comment
-we created a vector to represent the frequency of theses word in the comment. This
-allowed us to easily segment the testing and training data.
+For our features we selected the top 2500 most common words from all of our data.
+For each comment we created a vector, which corresponds to a single row in the csv file,
+to represent the frequency of theses word in the comment.
+This allowed us to easily segment the testing and training data.
 
 For example:
 
@@ -124,4 +142,17 @@ comment 1 |    1|        1|   0|     0|   0|     0|
 comment 2 |    0|        0|   1|     0|   0|     0|
 comment 3 |    0|        0|   0|     0|   1|     0|
 
-These csv files are quite sparse and are mostly filled with zeros.
+These csv files are quite sparse and are mostly filled with zeros so they are fairly small when compressed.
+
+They can be downloaded from the following places:
+
+http://comp598.s3.amazonaws.com/features/aww-features.tgz
+http://comp598.s3.amazonaws.com/features/books-features.tgz
+http://comp598.s3.amazonaws.com/features/funny-features.tgz
+http://comp598.s3.amazonaws.com/features/iama-features.tgz (This file does not exist since we did not use this subreddit in our report as it was too large.)
+http://comp598.s3.amazonaws.com/features/movies-features.tgz
+http://comp598.s3.amazonaws.com/features/news-features.tgz
+http://comp598.s3.amazonaws.com/features/pics-features.tgz
+http://comp598.s3.amazonaws.com/features/science-features.tgz
+http://comp598.s3.amazonaws.com/features/sports-features.tgz
+http://comp598.s3.amazonaws.com/features/videos-features.tgz
