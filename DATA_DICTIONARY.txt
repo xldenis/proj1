@@ -9,7 +9,7 @@
 
 This dateset contains a collection of the top 100 from 10 default subreddits.
 
-It contains the top 100 posts of the year starting on 15/8/2014.
+It contains the top 100 posts of the year as of 15/8/2014.
 Each post is saved as a JSON file, which is the format reddit supplies.
 The data is seperated into folders based on the subreddit. 
 
@@ -73,7 +73,7 @@ The 'comment' section contains a list of the top level comments from the post.
 
 Each comment has the following structure, the replies section is recursive and contains a list of comments.
 
-Of particular interest are the 'body' field and the score 'field'.
+Of particular interest are the 'body' field and the score 'field'. The strcuture is as follows.
 
 {
     "approved_by": null,
@@ -113,8 +113,8 @@ Additional to the raw JSON data is our set of extracted features.
 For each subreddit we created a cvs file which contains a tabulartion of the
 word frequency for each comments in that subreddit. 
 
-We selected the top 2500 most common words from all our data then for each comment
-created a vector to represent the frequency of theses word in the comment. This
+We selected the top 2500 most common words from all our data set then for each comment
+we created a vector to represent the frequency of theses word in the comment. This
 allowed us to easily segment the testing and training data.
 
 For example:
@@ -124,3 +124,4 @@ comment 1 |    1|        1|   0|     0|   0|     0|
 comment 2 |    0|        0|   1|     0|   0|     0|
 comment 3 |    0|        0|   0|     0|   1|     0|
 
+These csv files are quite sparse and are mostly filled with zeros.
