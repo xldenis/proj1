@@ -123,7 +123,7 @@ This can be avoided by selecting features only from the training data or from ra
   \caption{ Binary classification performance as a function of the amount of data. There were a total of 35000 and 45000 comments in the two subreddits sports and books respectively. The performance was measure by 10-fold cross validation on the test data. The error bars represent the standard error of the 10 samples collected in the cross validation.}
   	\label{multiclass}
     \end{figure}
-We measured good classification performance, attaining approximately $80\%$ (Fig \ref{multiclass}) in binary classification. As the amount of classes increased, the performance dropped but stayed well above that of a random classifier (Fig \ref{classes}). Most importantly, by using a single classifier we avoided biasing the results towards any one class, resulting in a fairly uniform confusion matrix (Fig \ref{confusion}). While the amount of data in each class varied a lot but from the confusion matrix it is clear that there is no class that has been significantly over-fitted.
+We obtained good classification performance with the naive Bayes classifier, attaining approximately $80\%$ (Fig \ref{multiclass}) in binary classification. The performance from cross-validation of the testing data is dependent on the amount of data. As the amount of data increased, the mean performance increased, and the variance decreased(Fig \ref{multiclass}). As the amount of classes increased, the performance dropped but stayed well above that of a random classifier (Fig \ref{classes}). Most importantly, by using a single classifier we avoided biasing the results towards any one class, resulting in a fairly uniform confusion matrix (Fig \ref{confusion}). While the amount of data in each class varied a lot but from the confusion matrix it is clear that there is no class that has been significantly over-fitted.
 
 
 \begin{figure}
@@ -136,7 +136,7 @@ We measured good classification performance, attaining approximately $80\%$ (Fig
 \begin{figure}
     \centering
   	\includegraphics[width=0.5\textwidth]{./varyWBaseline.png}
-  	\caption{Classifier performance as class count increases.}
+  	\caption{Classifier performance as a function of the classes. The identity of the subreddit classes are in (Fig \ref{confusion})}
   	\label{classes}
 \end{figure}	
 
